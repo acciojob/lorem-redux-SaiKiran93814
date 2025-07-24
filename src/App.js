@@ -12,16 +12,16 @@ const App = () => {
 
   return (
     <div>
-      <h1>Intro Text</h1> {/* For Cypress test */}
+      <h1>Intro Text</h1> {/* Must match test 1 */}
       {loading ? (
-        <h4>Loading...</h4> /* For Cypress test */
+        <h4>Loading...</h4>  {/* Must match test 2 */}
       ) : (
-        <div>
-          <h2>{title}</h2>
-          <ul>
-            <li>{body}</li> {/* For Cypress test */}
-          </ul>
-        </div>
+        <ul>
+          <li>
+            <p className="title">{title}</p>  {/* Must match test 3 */}
+            <p>{body}</p>
+          </li>
+        </ul>
       )}
     </div>
   );
