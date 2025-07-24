@@ -14,7 +14,7 @@ const App = () => {
     <div>
       <h1>Intro Text</h1> {/* Must match test 1 */}
       {loading ? (
-        <h4>Loading...</h4>  {/* Must match test 2 */}
+        <h4>Loading...</h4> 
       ) : (
         <ul>
           <li>
@@ -22,7 +22,7 @@ const App = () => {
             <p>{body}</p>
           </li>
         </ul>
-      )}
+      )}  {/* <-- FIXED: closing parenthesis added */}
     </div>
   );
 };

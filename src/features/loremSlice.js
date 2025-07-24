@@ -1,35 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Replace this with a real API URL if available.
-const API_URL = 'https://api.lorem.com/ipsum';
-
-// Async thunk to fetch data
+// Mock API or real API URL
 export const fetchLorem = createAsyncThunk('lorem/fetchLorem', async () => {
-  const response = await fetch(API_URL);
-  if (!response.ok) throw new Error('Failed to fetch Lorem data');
-  const data = await response.json(); // Expecting { title: "...", body: "..." }
+  // Example of mock data (replace with real fetch if needed)
+  const data = Array.from({ length: 10 }, (_, i) => ({
+    title: `Title ${i + 1}`,
+    body: `Body content for item ${i + 1}, lorem ipsum dolor sit amet...`,
+  }));
   return data;
 });
 
 const loremSlice = createSlice({
   name: 'lorem',
   initialState: {
+    data: [],
     loading: false,
     error: null,
-    title: '',
-    body: '',
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchLorem.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(fetchLorem.fulfilled, (state, action) => {
         state.loading = false;
-        state.title = action.payload.title;
-        state.body = action.payload.body;
+        state.data = action.payload;
       })
       .addCase(fetchLorem.rejected, (state, action) => {
         state.loading = false;
